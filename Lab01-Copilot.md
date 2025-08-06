@@ -1,6 +1,6 @@
 Lab: สร้าง Web API (.NET) ด้วย GitHub Copilot
 
-ขั้นตอนการทำ Lab
+ขั้นตอนการทำ Lab<br>
 
 ขั้นตอนที่ 1: สร้างโปรเจกต์ใหม่<br>
 	1.	เปิด VS Code และสร้าง repo ใหม่ (หรือเปิดโฟลเดอร์เปล่า)<br>
@@ -10,20 +10,35 @@ dotnet new webapi -n WebApi
 cd WebApi
 ```
 
-ขั้นตอนที่ 2: สร้าง API Endpoint<br>
-	1.	เปิด Program.cs หรือสร้าง controller ใหม่ชื่อ MathController.cs<br>
-	2.	ใช้ Copilot เพื่อ generate endpoint:<br>
-	•	/factorial/{n}<br>
-	•	/fibonacci/{n}<br><br>
-
-ตัวอย่าง Prompt:<br>
+ขั้นตอนที่ 2: สร้าง Model และ Repository <br>
+•	ใช้ Prompt ให้ Copilot สร้างคลาส Product.cs:<br>
 ```prompt
-สร้าง API ที่รับพารามิเตอร์ n และคืนค่าผลลัพธ์ของ factorial
+สร้างคลาส Product ที่มี Id, Name, Price, และ Stock
+```
+•	สร้าง IProductRepository แบบ In-Memory:<br>
+```prompt
+สร้าง interface สำหรับ CRUD ของ Product และ class ที่ implement แบบ in-memory
 ```
 
-ขั้นตอนที่ 3: สร้าง Unit Test ด้วย Copilot Chat (15 นาที)<br>
-	1.	สร้าง Project สำหรับ test:<br>
-```bash
-dotnet new xunit -n WebApi.Tests
-dotnet add WebApi.Tests reference WebApi
+ขั้นตอนที่ 3: สร้าง Controller พร้อม CRUD <br>
+•	สร้าง ProductController.cs:<br>
+```prompt
+สร้าง Web API controller สำหรับ Product ที่มี action: GetAll, GetById, Create, Update, Delete
+```
+•	ให้ Copilot แนะนำ route และ action method:<br>
+```csharp
+[HttpGet]
+public IEnumerable<Product> GetAll()
+
+[HttpGet("{id}")]
+public ActionResult<Product> GetById(int id)
+
+[HttpPost]
+public IActionResult Create(Product product)
+
+[HttpPut("{id}")]
+public IActionResult Update(int id, Product product)
+
+[HttpDelete("{id}")]
+public IActionResult Delete(int id)
 ```
