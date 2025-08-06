@@ -11,7 +11,7 @@ cd WebApi
 ```
 
 ขั้นตอนที่ 2: สร้าง API Endpoint<br>
-	1.	เปิด WeatherForecastController.cs หรือสร้าง controller ใหม่ชื่อ MathController.cs<br>
+	1.	เปิด Program.cs หรือสร้าง controller ใหม่ชื่อ MathController.cs<br>
 	2.	ใช้ Copilot เพื่อ generate endpoint:<br>
 	•	/factorial/{n}<br>
 	•	/fibonacci/{n}<br><br>
